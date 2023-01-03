@@ -24,7 +24,14 @@ class Ball:
 
     def update(self):
         self.actor.x = self.actor.x + self.ball_ax
-        self.actor.y = self.actor.y + self.ball_ax
+        self.actor.y = self.actor.y + self.ball_ay
+
+        if WIDTH <= ball.actor.x or 0 >= ball.actor.x:
+            self.ball_ax = self.ball_ax * -1
+        if 0 >= ball.actor.y or HEIGHT <= ball.actor.y:
+            self.ball_ay = self.ball_ay * -1
+
+
 
     def draw(self):
         self.actor.draw()
