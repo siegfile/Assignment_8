@@ -10,6 +10,10 @@ class Paddle:
     def __init__(self):
         self.actor = Actor('paddle.png', center = (WIDTH//2, HEIGHT-25))
 
+    def update(self, ball):
+        if (HEIGHT - 25 - ball.actor.y < 10) and (abs(self.actor.x - ball.actor.x) < 40):
+            ball.ball_ay *= -1
+
     def draw(self):
         self.actor.draw()
 
@@ -46,6 +50,7 @@ def draw():
 
 def update():
     ball.update()
+    paddle.update(ball)
 
 def on_mouse_move(pos):
     paddle.actor.x = pos[0]
