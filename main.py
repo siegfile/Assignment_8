@@ -40,12 +40,32 @@ class Ball:
     def draw(self):
         self.actor.draw()
 
+class Heart:
+    def __init__(self, x):
+        self.actor = Actor('heart.png', center = (x, 30))
+
+    def draw(self):
+        self.actor.draw()
+
+    def hits (self, hearts_list):
+        if ball.actor.y == HEIGHT:
+            hearts_list.pop(len(hearts_list)-1)
+            ball.actor.x = WIDTH//2
+            ball.actor.y = HEIGHT//2
+
 paddle = Paddle()
 ball = Ball(6)
+hearts = []
+x = 0
+for i in range(0, 3):
+    x = x + 25
+    hearts.append(Heart(x))
 def draw():
     screen.clear()
     paddle.draw()
     ball.draw()
+    for heart in hearts:
+        heart.draw()
 
 
 def update():
