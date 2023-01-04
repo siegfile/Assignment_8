@@ -32,7 +32,7 @@ class Ball:
 
         if WIDTH <= ball.actor.x or 0 >= ball.actor.x:
             self.ball_ax = self.ball_ax * -1
-        if 0 >= ball.actor.y or HEIGHT <= ball.actor.y:
+        if 0 >= ball.actor.y:
             self.ball_ay = self.ball_ay * -1
 
 
@@ -47,11 +47,6 @@ class Heart:
     def draw(self):
         self.actor.draw()
 
-    def hits (self, hearts_list):
-        if ball.actor.y == HEIGHT:
-            hearts_list.pop(len(hearts_list)-1)
-            ball.actor.x = WIDTH//2
-            ball.actor.y = HEIGHT//2
 
 paddle = Paddle()
 ball = Ball(6)
@@ -71,6 +66,10 @@ def draw():
 def update():
     ball.update()
     paddle.update(ball)
+    if ball.actor.y >= HEIGHT:
+        ball.actor.x = WIDTH//2
+        ball.actor.y = HEIGHT//2
+        hearts.pop(len(hearts)-1)
 
 def on_mouse_move(pos):
     paddle.actor.x = pos[0]
